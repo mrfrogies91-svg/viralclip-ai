@@ -1,0 +1,50 @@
+{
+  "name": "viralclip-ai",
+  "productName": "ViralClip AI",
+  "version": "4.7.0",
+  "description": "ViralClip AI V4.7 Production Hybrid + URL Video Ingest + Free/Pro Controls",
+  "main": "main.js",
+  "author": "ViralClip AI",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist:win": "electron-builder --win nsis --x64",
+    "dist:portable": "electron-builder --win portable --x64",
+    "dist": "electron-builder --win nsis portable --x64",
+    "cloud:start": "node server.js"
+  },
+  "build": {
+    "appId": "ai.viralclip.desktop",
+    "productName": "ViralClip AI",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!dist/**",
+      "!node_modules/.cache/**"
+    ],
+    "asar": true,
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "artifactName": "ViralClip-AI-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "portable": {
+      "artifactName": "ViralClip-AI-${version}-Portable.${ext}"
+    }
+  },
+  "devDependencies": {
+    "electron": "^38.2.0",
+    "electron-builder": "^26.0.12"
+  }
+}
